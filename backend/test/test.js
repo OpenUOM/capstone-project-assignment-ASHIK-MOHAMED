@@ -49,6 +49,7 @@ describe("Teacher Endpoints", () => {
 
     expect(body).toContainEqual({
       "id": 10033,
+      // other teacher properties
       "name": "Nilanthi Fernando",
       "age": 42
     });
@@ -64,9 +65,10 @@ describe("Teacher Endpoints", () => {
 
     const res = await requestWithSupertest.get("/listTeachers");
     expect(res.status).toEqual(200);
+    console.log('Response Body:', body);
     let body = res.body;
 
-    expect(body).toContainEqual({
+    expect(body).toEqual({
       "id": 10002,
       "name": "Saman",
       "age": 50
@@ -94,7 +96,7 @@ describe("Teacher Endpoints", () => {
       expect(element).toHaveProperty('id');
     });
 
-    expect(body.length).toBe(2);
+    expect(body.length).toEqual(2);
 
     expect(body).toContainEqual({
       "id": 10001,
@@ -115,6 +117,7 @@ describe("Student Endpoints", () => {
     const res = await requestWithSupertest.get("/listStudents");
     expect(res.status).toEqual(200);
     let body = res.body;
+    console.log('Response Body:', body);
     expect(body.length).toEqual(3);
     body.forEach(element => {
       expect(element).toHaveProperty('age');
@@ -140,10 +143,10 @@ describe("Student Endpoints", () => {
     const res = await requestWithSupertest.get("/listStudents");
     expect(res.status).toEqual(200);
     let body = res.body;
-
+    console.log('Response Body:', body);
     expect(body.length).toBe(4)
 
-    expect(body).toContainEqual({
+    expect(body).toEqual({
       "id": 99999,
       "name": "Rashini Shehara",
       "age": 12,
