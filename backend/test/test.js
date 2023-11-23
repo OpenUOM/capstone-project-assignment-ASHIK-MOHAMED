@@ -44,19 +44,18 @@ describe("Teacher Endpoints", () => {
     const res = await requestWithSupertest.get("/listTeachers");
     expect(res.status).toEqual(200);
     let body = res.body;
-    console.log('Response Body:', body);
+
     expect(body.length).toBe(4)
 
     expect(body).toContainEqual({
       "id": 10033,
-      // other teacher properties
       "name": "Nilanthi Fernando",
       "age": 42
     });
   });
 
   it("POST /editTeacher should show a newly added teacher", async () => {
-    // add new teacher
+    // edit existing teacher
     await requestWithSupertest.post("/editTeacher").send({
       "id": 10002,
       "name": "Saman",
@@ -65,10 +64,9 @@ describe("Teacher Endpoints", () => {
 
     const res = await requestWithSupertest.get("/listTeachers");
     expect(res.status).toEqual(200);
-    console.log('Response Body:', body);
     let body = res.body;
 
-    expect(body).toEqual({
+    expect(body).toContainEqual({
       "id": 10002,
       "name": "Saman",
       "age": 50
@@ -96,7 +94,7 @@ describe("Teacher Endpoints", () => {
       expect(element).toHaveProperty('id');
     });
 
-    expect(body.length).toEqual(2);
+    expect(body.length).toBe(2);
 
     expect(body).toContainEqual({
       "id": 10001,
@@ -117,7 +115,6 @@ describe("Student Endpoints", () => {
     const res = await requestWithSupertest.get("/listStudents");
     expect(res.status).toEqual(200);
     let body = res.body;
-    console.log('Response Body:', body);
     expect(body.length).toEqual(3);
     body.forEach(element => {
       expect(element).toHaveProperty('age');
@@ -143,10 +140,10 @@ describe("Student Endpoints", () => {
     const res = await requestWithSupertest.get("/listStudents");
     expect(res.status).toEqual(200);
     let body = res.body;
-    console.log('Response Body:', body);
+
     expect(body.length).toBe(4)
 
-    expect(body).toEqual({
+    expect(body).toContainEqual({
       "id": 99999,
       "name": "Rashini Shehara",
       "age": 12,
@@ -155,7 +152,7 @@ describe("Student Endpoints", () => {
   });
 
   it("POST /editStudent should edit a Student", async () => {
-    // add new teacher
+    // add existing student
     await requestWithSupertest.post("/editStudent").send({
       "id": 20002,
       "name": "Sandakan",
