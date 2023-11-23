@@ -8,15 +8,15 @@ permissions:
   checks: write
   actions: read
   contents: read
-  
+
 jobs:
   build:
     name: Autograding
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-    - uses: actions/setup-node@v3
-    with:
-         node-version: 16
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - uses: actions/checkout@v4
       - uses: education/autograding@v1
