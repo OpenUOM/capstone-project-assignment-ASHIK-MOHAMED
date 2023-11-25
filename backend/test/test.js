@@ -45,6 +45,22 @@ describe("Teacher Endpoints", () => {
     expect(res.status).toEqual(200);
     let body = res.body;
 
+
+    body.forEach(element => {
+      expect(element).toHaveProperty('age');
+      expect(element).toHaveProperty('name');
+      expect(element).toHaveProperty('id');
+    });
+
+// Example response structure
+// { id: 10033, name: 'John Doe', subject: 'Math' }
+
+expect(body.length).toBe(3); // Check the length of the array in the response
+expect(body[2].id).toBe(10033); // Check the id of the newly added teacher
+expect(body[2].name).toBe('John Doe'); // Check the name of the newly added teacher
+expect(body[2].subject).toBe('Math'); // Check the subject of the newly added teacher
+
+
     expect(body.length).toBe(4)
 
     expect(body).toContainEqual({
@@ -94,7 +110,7 @@ describe("Teacher Endpoints", () => {
       expect(element).toHaveProperty('id');
     });
 
-    expect(body.length).toBe(2);
+    expect(body.length).toBe(4);
 
     expect(body).toContainEqual({
       "id": 10001,
