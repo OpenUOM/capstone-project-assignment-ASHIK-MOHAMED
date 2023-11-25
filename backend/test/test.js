@@ -40,22 +40,24 @@ describe("Teacher Endpoints", () => {
       "name": "Nilanthi Fernando",
       "age": 42
     });
-
+  
     const res = await requestWithSupertest.get("/listTeachers");
     expect(res.status).toEqual(200);
     let body = res.body;
     console.log('Response Body:', body);
-    expect(body.length).toBe(4)
-
-
-
-
+  
+    // Add this line to see the response from the server
+    console.log('Server Response:', res.text);
+  
+    expect(body.length).toBe(4);
+  
     expect(body).toContainEqual({
       "id": 10033,
       "name": "Nilanthi Fernando",
       "age": 42
     });
   });
+  
 
   it("POST /editTeacher should show a newly added teacher", async () => {
     // add new teacher
